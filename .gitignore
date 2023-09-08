@@ -1,4 +1,5 @@
 *~
 \#*
+*.md
 /docker-compose.development.yml
 /docker-compose.test.yml

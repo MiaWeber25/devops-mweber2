@@ -1,0 +1,42 @@
+# Use a version of node that's compatible with your application
+FROM --platform=${TARGETPLATFORM} amazonlinux
+
+
+#RUN apt-get update
+#RUN apt-get upgrade
+#RUN apt-get install -y curl bash
+
+#RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash
+
+RUN yum install -y nodejs 
+
+RUN node --version
+
+
+
+# Update npm to your desired version, 10 seems like a typo since npm versions are not in sync with Node versions
+RUN npm install -g npm@8
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install node modules
+RUN npm install
+
+# Copy the rest of the application source code
+COPY . .
+
+# Build the application
+RUN npm run build
+
+EXPOSE 80
+ENTRYPOINT [ "npm", "start" ]
+CMD bash
+
+# The CMD command is not needed if this container is only for building the app and running AWS CLI commands
+
+# Now your container is ready to be used as a build environment for your React app,
+# and it's also equipped with the AWS CLI for deployment.

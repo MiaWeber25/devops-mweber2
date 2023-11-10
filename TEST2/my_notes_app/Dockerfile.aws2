@@ -1,0 +1,36 @@
+# Use a version of node that's compatible with your application
+FROM --platform=${TARGETPLATFORM} node:18-alpine
+
+# Install utilities
+RUN apk add --no-cache util-linux bash
+
+# Update npm to your desired version, 10 seems like a typo since npm versions are not in sync with Node versions
+RUN npm install -g npm@8
+
+# Install AWS CLI
+RUN apk add --no-cache python3 py3-pip && \
+    pip install --no-cache-dir awscli && \
+    apk --purge -v del py-pip
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install node modules
+RUN npm install
+
+# Copy the rest of the application source code
+COPY . .
+
+# Build the application
+RUN npm run build
+
+EXPOSE 80
+ENTRYPOINT [ "npm", "start" ]
+
+# The CMD command is not needed if this container is only for building the app and running AWS CLI commands
+
+# Now your container is ready to be used as a build environment for your React app,
+# and it's also equipped with the AWS CLI for deployment.

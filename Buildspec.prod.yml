@@ -4,10 +4,10 @@ phases:
   pre_build:
     commands:
       - echo "Navigating to TEST2/my_notes_app directory"
+      - REPOSITORY_URI=240592812441.dkr.ecr.us-east-1.amazonaws.com/my_notes_app
       - cd TEST2/my_notes_app
       - echo "Executing pre_build commands"
       - echo $(aws ecr get-login-password --region $AWS_DEFAULT_REGION) | docker login --username AWS --password-stdin $REPOSITORY_URI
-      - REPOSITORY_URI=240592812441.dkr.ecr.us-east-1.amazonaws.com/my_notes_app
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:

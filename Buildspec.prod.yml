@@ -23,4 +23,4 @@ phases:
       - printf '[{"name":"my_notes_app","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
-  files: imagedefinitions.json
+  files: TEST2/my_notes_app/imagedefinitions.json

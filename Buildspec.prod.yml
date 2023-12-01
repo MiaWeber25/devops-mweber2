@@ -20,7 +20,8 @@ phases:
       - echo "Pushing Docker images"
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - cd $CODEBUILD_SRC_DIR
       - printf '[{"name":"my_notes_app","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
-  files: TEST2/my_notes_app/imagedefinitions.json
+  files: imagedefinitions.json

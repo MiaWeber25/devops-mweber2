@@ -19,11 +19,11 @@
         "supertest": "^6.3.3"
     },
   "scripts": {
-      "start": "./balked-npm-install && react-scripts start",
-      "development": "./balked-npm-install && react-scripts start",
-      "build": "./balked-npm-install && react-scripts build",
-      "test": "./balked-npm-install && react-scripts test",
-      "eject": "./balked-npm-install && react-scripts eject"
+      "start": "PORT=80 react-scripts start",
+      "development": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

@@ -3,6 +3,7 @@
 In the 'my-notes-app' branch of this repository there is code for a simple React application that has been deployed with AWS. An AWS CodePipeline was configured so that on a push to the 'my-notes-app' branch of this repository, the code will built and deployed. Rather than focusing on building an advanced React application, the focus was on building a CI/CD pipeline in AWS and gaining familiarity with AWS tools and how they can be assembled to host a web application.  
 
 The following outlines the file structure of the project, the tools that were used in order to accomplish this, and the roadblocks that were encountered along the way. 
+Also see **Issues** for specific breakdowns and screenshots of the challenges I faced.
 
 ## Project Structure
 
